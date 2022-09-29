@@ -3,6 +3,7 @@ package xyz.teamgravity.customcalendarview.presentation.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import xyz.teamgravity.customcalendarview.databinding.ActivityMainBinding
 import xyz.teamgravity.customcalendarview.presentation.fragment.Calendar
 
@@ -16,7 +17,7 @@ class Main : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        loadFragment()
+        if (savedInstanceState == null) loadFragment()
     }
 
     private fun loadFragment() {
