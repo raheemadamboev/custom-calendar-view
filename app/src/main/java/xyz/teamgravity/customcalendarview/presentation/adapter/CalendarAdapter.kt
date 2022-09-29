@@ -5,16 +5,16 @@ import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
+import timber.log.Timber
 import xyz.teamgravity.customcalendarview.R
 import xyz.teamgravity.customcalendarview.databinding.CardDayBinding
 import java.time.LocalDate
 
-class CalendarAdapter(
-    private var selectedDate: LocalDate,
-) : DayBinder<CalendarAdapter.CalendarViewHolder> {
+class CalendarAdapter : DayBinder<CalendarAdapter.CalendarViewHolder> {
 
     var listener: CalendarListener? = null
 
+    private var selectedDate: LocalDate = LocalDate.now()
     private var treatments: Map<LocalDate, Unit> = emptyMap()
     private var surveys: Map<LocalDate, Unit> = emptyMap()
 
@@ -62,6 +62,12 @@ class CalendarAdapter(
 
     override fun bind(container: CalendarViewHolder, day: CalendarDay) {
         container.bind(day)
+    }
+
+    fun submitSelectedDate(selectedDate: LocalDate) {
+        this.selectedDate = selectedDate
+        listener?.onDataChanged(selectedDate)
+        listener?.onDateClick(selectedDate)
     }
 
     fun submitTreatments(treatments: Map<LocalDate, Unit>) {
