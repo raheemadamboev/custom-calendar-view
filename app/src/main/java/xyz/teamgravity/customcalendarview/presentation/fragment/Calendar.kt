@@ -64,6 +64,7 @@ class Calendar : Fragment(), CalendarAdapter.CalendarListener {
     }
 
     private fun observe() {
+        observeSelectedDate()
         observeTreatments()
         observeSurveys()
         observeData()
@@ -88,6 +89,14 @@ class Calendar : Fragment(), CalendarAdapter.CalendarListener {
 
     private fun recyclerview() {
         binding.recyclerview.adapter = dataAdapter
+    }
+
+    private fun observeSelectedDate() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewmodel.selectedDate.collectLatest { data ->
+                adapter.submitSelectedDate(data)
+            }
+        }
     }
 
     private fun observeTreatments() {
