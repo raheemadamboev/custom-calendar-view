@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="1dp"
+    android:padding="10dp"
+    tools:background="@drawable/background_selected">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/day_t"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="24" />
+
+    <View
+        android:id="@+id/survey_i"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/ic_fiber_green"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/treatment_i"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/day_t"
+        tools:visibility="visible" />
+
+    <View
+        android:id="@+id/treatment_i"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/ic_fiber_blue"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/survey_i"
+        app:layout_constraintTop_toBottomOf="@id/day_t"
+        tools:visibility="visible" />
+</androidx.constraintlayout.widget.ConstraintLayout>
