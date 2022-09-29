@@ -55,6 +55,9 @@ dependencies {
     // constraint layout
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
+    // viewmodel
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+
     // lifecycle
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
 
@@ -65,6 +68,9 @@ dependencies {
     // hilt
     implementation 'com.google.dagger:hilt-android:2.43.2'
     kapt 'com.google.dagger:hilt-compiler:2.43.2'
+
+    // fragment ktx
+    implementation 'androidx.fragment:fragment-ktx:1.5.3'
 
     // desugar jdk
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
