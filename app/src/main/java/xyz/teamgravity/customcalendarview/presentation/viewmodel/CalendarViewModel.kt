@@ -3,7 +3,6 @@ package xyz.teamgravity.customcalendarview.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import xyz.teamgravity.customcalendarview.data.model.DataModel
@@ -18,6 +17,9 @@ class CalendarViewModel @Inject constructor(
     private val repository: MainRepository,
 ) : ViewModel() {
 
+    private val _selectedDate = MutableStateFlow(LocalDate.now())
+    val selectedDate: StateFlow<LocalDate> = _selectedDate.asStateFlow()
+
     private val _treatments = MutableStateFlow(emptyList<TreatmentModel>())
     val treatments: StateFlow<List<TreatmentModel>> = _treatments.asStateFlow()
 
@@ -27,8 +29,6 @@ class CalendarViewModel @Inject constructor(
     private val _data = MutableStateFlow(emptyList<DataModel>())
     val data: StateFlow<List<DataModel>> = _data.asStateFlow()
 
-    private var dataJob: Job? = null
-
     init {
         observe()
     }
@@ -36,6 +36,7 @@ class CalendarViewModel @Inject constructor(
     private fun observe() {
         observeTreatments()
         observeSurveys()
+        observeData()
     }
 
     private fun observeTreatments() {
@@ -54,20 +55,25 @@ class CalendarViewModel @Inject constructor(
         }
     }
 
+    private fun observeData() {
+        viewModelScope.launch {
+            combine(selectedDate, treatments, surveys) { selectedDate, treatments, surveys ->
+                val currentTreatments = treatments.filter { it.time == selectedDate }
+                val currentSurveys = surveys.filter { it.time == selectedDate }
+                return@combine currentTreatments + currentSurveys
+            }.collectLatest { data ->
+                _data.emit(data)
+            }
+        }
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // API
     ///////////////////////////////////////////////////////////////////////////
 
     fun onDateChange(date: LocalDate) {
-        dataJob?.cancel()
-        dataJob = viewModelScope.launch {
-            combine(treatments, surveys) { treatments, surveys ->
-                val currentTreatments = treatments.filter { it.time == date }
-                val currentSurveys = surveys.filter { it.time == date }
-                return@combine currentTreatments + currentSurveys
-            }.collectLatest { data ->
-                _data.emit(data)
-            }
+        viewModelScope.launch {
+            _selectedDate.emit(date)
         }
     }
 }
