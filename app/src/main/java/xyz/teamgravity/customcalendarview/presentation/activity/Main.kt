@@ -2,9 +2,11 @@ package xyz.teamgravity.customcalendarview.presentation.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 import xyz.teamgravity.customcalendarview.databinding.ActivityMainBinding
 import xyz.teamgravity.customcalendarview.presentation.fragment.Calendar
 
+@AndroidEntryPoint
 class Main : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
