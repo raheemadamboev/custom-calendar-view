@@ -5,19 +5,18 @@ import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
-import xyz.teamgravity.customcalendarview.data.model.DataModel
 import xyz.teamgravity.customcalendarview.R
-import xyz.teamgravity.customcalendarview.data.model.SurveyModel
-import xyz.teamgravity.customcalendarview.data.model.TreatmentModel
 import xyz.teamgravity.customcalendarview.databinding.CardDayBinding
 import java.time.LocalDate
 
 class CalendarAdapter(
-    private val surveys: Map<LocalDate, List<SurveyModel>>,
-    private val treatments: Map<LocalDate, List<TreatmentModel>>,
-    private var selectedDate: LocalDate?,
-    private val listener: CalendarListener,
+    private var selectedDate: LocalDate,
 ) : DayBinder<CalendarAdapter.CalendarViewHolder> {
+
+    var listener: CalendarListener? = null
+
+    private var treatments: Map<LocalDate, Unit> = emptyMap()
+    private var surveys: Map<LocalDate, Unit> = emptyMap()
 
     inner class CalendarViewHolder(private val binding: CardDayBinding) : ViewContainer(binding.root) {
 
@@ -27,16 +26,12 @@ class CalendarAdapter(
             binding.apply {
                 root.setOnClickListener {
                     if (day.owner == DayOwner.THIS_MONTH) {
-                        val currentSelection = selectedDate
-                        if (currentSelection == day.date) {
-                            selectedDate = null
-                            listener.notifyDateChanged(currentSelection)
-                            listener.onDateClick(emptyList())
-                        } else {
+                        if (selectedDate != day.date) {
+                            val formerSelectedDate = selectedDate
                             selectedDate = day.date
-                            listener.notifyDateChanged(day.date)
-                            if (currentSelection != null) listener.notifyDateChanged(currentSelection)
-                            listener.onDateClick(getData(day.date))
+                            listener?.onDataChanged(formerSelectedDate)
+                            listener?.onDataChanged(selectedDate)
+                            listener?.onDateClick(selectedDate)
                         }
                     }
                 }
@@ -50,8 +45,8 @@ class CalendarAdapter(
 
                 if (day.owner == DayOwner.THIS_MONTH) {
                     root.setBackgroundResource(if (selectedDate == day.date) R.drawable.background_selected else R.drawable.background_unselected)
-                    surveyI.visibility = if (surveys[day.date].isNullOrEmpty()) View.GONE else View.VISIBLE
-                    treatmentI.visibility = if (treatments[day.date].isNullOrEmpty()) View.GONE else View.VISIBLE
+                    treatmentI.visibility = if (treatments[day.date] == Unit) View.VISIBLE else View.GONE
+                    surveyI.visibility = if (surveys[day.date] == Unit) View.VISIBLE else View.GONE
 
                     root.visibility = View.VISIBLE
                 } else {
@@ -69,15 +64,22 @@ class CalendarAdapter(
         container.bind(day)
     }
 
-    private fun getData(date: LocalDate): List<DataModel> {
-        val data = mutableListOf<DataModel>()
-        treatments[date]?.let { data.addAll(it) }
-        surveys[date]?.let { data.addAll(it) }
-        return data
+    fun submitTreatments(treatments: Map<LocalDate, Unit>) {
+        this.treatments = treatments
+        treatments.keys.forEach { date ->
+            listener?.onDataChanged(date)
+        }
+    }
+
+    fun submitSurveys(surveys: Map<LocalDate, Unit>) {
+        this.surveys = surveys
+        surveys.keys.forEach { date ->
+            listener?.onDataChanged(date)
+        }
     }
 
     interface CalendarListener {
-        fun notifyDateChanged(date: LocalDate)
-        fun onDateClick(data: List<DataModel>)
+        fun onDataChanged(date: LocalDate)
+        fun onDateClick(date: LocalDate)
     }
 }
