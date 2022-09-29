@@ -9,7 +9,6 @@ import xyz.teamgravity.customcalendarview.core.util.Helper
 import xyz.teamgravity.customcalendarview.presentation.adapter.CalendarAdapter
 import xyz.teamgravity.customcalendarview.presentation.adapter.CalendarHeaderAdapter
 import xyz.teamgravity.customcalendarview.presentation.adapter.DataAdapter
-import java.time.LocalDate
 
 @Module
 @InstallIn(FragmentComponent::class)
@@ -29,5 +28,5 @@ object FragmentModule {
 
     @Provides
     @FragmentScoped
-    fun provideCalendarAdapter(): CalendarAdapter = CalendarAdapter(LocalDate.now())
+    fun provideCalendarAdapter(): CalendarAdapter = CalendarAdapter()
 }
