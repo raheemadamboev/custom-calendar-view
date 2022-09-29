@@ -17,10 +17,10 @@ class CalendarHeaderAdapter(
 
     inner class CalendarHeaderViewHolder(private val binding: CardHeaderBinding) : ViewContainer(binding.root) {
 
-        fun bind(month: CalendarMonth) {
+        fun bind(model: CalendarMonth) {
             binding.apply {
                 if (binding.root.tag == null) {
-                    root.tag = month.yearMonth
+                    root.tag = model.yearMonth
                     root.children.map { it as TextView }.forEachIndexed { index, textView ->
                         textView.text = daysOfWeek[index].getDisplayName(TextStyle.SHORT, Locale.getDefault())
                     }

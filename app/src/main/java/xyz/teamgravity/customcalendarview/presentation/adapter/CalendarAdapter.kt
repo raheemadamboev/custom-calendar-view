@@ -38,15 +38,15 @@ class CalendarAdapter(
             }
         }
 
-        fun bind(day: CalendarDay) {
+        fun bind(model: CalendarDay) {
             binding.apply {
-                this@CalendarViewHolder.day = day
-                dayT.text = day.date.dayOfMonth.toString()
+                this@CalendarViewHolder.day = model
+                dayT.text = model.date.dayOfMonth.toString()
 
-                if (day.owner == DayOwner.THIS_MONTH) {
-                    root.setBackgroundResource(if (selectedDate == day.date) R.drawable.background_selected else R.drawable.background_unselected)
-                    treatmentI.visibility = if (treatments[day.date] == Unit) View.VISIBLE else View.GONE
-                    surveyI.visibility = if (surveys[day.date] == Unit) View.VISIBLE else View.GONE
+                if (model.owner == DayOwner.THIS_MONTH) {
+                    root.setBackgroundResource(if (selectedDate == model.date) R.drawable.background_selected else R.drawable.background_unselected)
+                    treatmentI.visibility = if (treatments[model.date] == Unit) View.VISIBLE else View.GONE
+                    surveyI.visibility = if (surveys[model.date] == Unit) View.VISIBLE else View.GONE
 
                     root.visibility = View.VISIBLE
                 } else {
