@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/legend_text_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        tools:text="SUN" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/legend_text_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        tools:text="MON" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/legend_text_3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        tools:text="TUE" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/legend_text_4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        tools:text="WED" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/legend_text_5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        tools:text="THU" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/legend_text_6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        tools:text="FRI" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/legend_text_7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        tools:text="SAT" />
+</LinearLayout>
