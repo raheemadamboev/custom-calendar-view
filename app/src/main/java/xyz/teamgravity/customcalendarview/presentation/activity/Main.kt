@@ -1,10 +1,11 @@
-package xyz.teamgravity.customcalendarview.presentation
+package xyz.teamgravity.customcalendarview.presentation.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import xyz.teamgravity.customcalendarview.databinding.ActivityMainBinding
+import xyz.teamgravity.customcalendarview.presentation.fragment.Calendar
 
-class MainActivity : AppCompatActivity() {
+class Main : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadFragment() {
         supportFragmentManager
             .beginTransaction()
-            .replace(binding.fragmentContainer.id, CalendarFragment.instance())
+            .replace(binding.fragmentContainer.id, Calendar.instance())
             .commit()
     }
 }

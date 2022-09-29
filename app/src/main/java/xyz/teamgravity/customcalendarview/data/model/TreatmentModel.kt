@@ -1,4 +1,4 @@
-package xyz.teamgravity.customcalendarview.model
+package xyz.teamgravity.customcalendarview.data.model
 
 import java.time.LocalDate
 
