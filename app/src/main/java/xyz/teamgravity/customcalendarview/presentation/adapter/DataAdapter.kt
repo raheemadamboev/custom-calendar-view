@@ -11,7 +11,9 @@ import xyz.teamgravity.customcalendarview.data.model.TreatmentModel
 import xyz.teamgravity.customcalendarview.databinding.CardSurveyBinding
 import xyz.teamgravity.customcalendarview.databinding.CardTreatmentBinding
 
-class DataAdapter : ListAdapter<DataModel, ViewHolder>(DataDiffUtil()) {
+class DataAdapter(
+    diff: DataDiff,
+) : ListAdapter<DataModel, ViewHolder>(diff) {
 
     companion object {
         const val TREATMENT = 0x4545
@@ -53,7 +55,7 @@ class DataAdapter : ListAdapter<DataModel, ViewHolder>(DataDiffUtil()) {
         return if (getItem(position) is TreatmentModel) TREATMENT else SURVEY
     }
 
-    private class DataDiffUtil : DiffUtil.ItemCallback<DataModel>() {
+     class DataDiff : DiffUtil.ItemCallback<DataModel>() {
         override fun areItemsTheSame(oldItem: DataModel, newItem: DataModel): Boolean {
             return oldItem === newItem
         }
