@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <color name="light_blue">#E8EFFF</color>
+    <color name="blue">#4C60F7</color>
+    <color name="green">#39BE92</color>
+    <color name="black">#000000</color>
 </resources>
