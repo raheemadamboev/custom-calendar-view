@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="1dp"
-    android:padding="10dp"
+    android:layout_margin="3dp"
+    android:padding="6dp"
     tools:background="@drawable/background_selected">
 
     <com.google.android.material.textview.MaterialTextView
@@ -19,8 +19,8 @@
 
     <View
         android:id="@+id/survey_i"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
+        android:layout_width="11dp"
+        android:layout_height="11dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/ic_fiber_green"
         android:visibility="gone"
@@ -31,8 +31,8 @@
 
     <View
         android:id="@+id/treatment_i"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
+        android:layout_width="11dp"
+        android:layout_height="11dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/ic_fiber_blue"
         android:visibility="gone"
