@@ -9,6 +9,15 @@ import java.util.*
 object Helper {
 
     /**
+     * Formatter that is used to format month and year
+     */
+    private val monthYearFormatter: DateTimeFormatter by lazy { DateTimeFormatter.ofPattern("MMMM yyyy") }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // API
+    ///////////////////////////////////////////////////////////////////////////
+
+    /**
      * Returns array of DayOfWeek according to locale order
      * (MUN or SUN) first?
      */
@@ -26,10 +35,9 @@ object Helper {
     }
 
     /**
-     * Used for getting formatted string
+     * Returns month and year formatted string in order to display in TextView
      */
-    private val yearMonthFormatter: DateTimeFormatter by lazy { DateTimeFormatter.ofPattern("MMMM") }
-    fun formatYearMonth(month: CalendarMonth): String {
-        return "${yearMonthFormatter.format(month.yearMonth)} ${month.yearMonth.year}"
+    fun formatMonthYear(month: CalendarMonth): String {
+        return monthYearFormatter.format(month.yearMonth)
     }
 }
