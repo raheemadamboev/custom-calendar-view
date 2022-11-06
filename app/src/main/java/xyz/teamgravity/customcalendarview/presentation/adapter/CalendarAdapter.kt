@@ -5,7 +5,6 @@ import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
-import timber.log.Timber
 import xyz.teamgravity.customcalendarview.R
 import xyz.teamgravity.customcalendarview.databinding.CardDayBinding
 import java.time.LocalDate
@@ -23,16 +22,10 @@ class CalendarAdapter : DayBinder<CalendarAdapter.CalendarViewHolder> {
         private lateinit var day: CalendarDay
 
         init {
-            binding.apply {
-                root.setOnClickListener {
-                    if (day.owner == DayOwner.THIS_MONTH) {
-                        if (selectedDate != day.date) {
-                            val formerSelectedDate = selectedDate
-                            selectedDate = day.date
-                            listener?.onDataChanged(formerSelectedDate)
-                            listener?.onDataChanged(selectedDate)
-                            listener?.onDateClick(selectedDate)
-                        }
+            binding.root.setOnClickListener {
+                if (day.owner == DayOwner.THIS_MONTH) {
+                    if (selectedDate != day.date) {
+                        listener?.onDateClick(day.date)
                     }
                 }
             }
@@ -41,9 +34,9 @@ class CalendarAdapter : DayBinder<CalendarAdapter.CalendarViewHolder> {
         fun bind(model: CalendarDay) {
             binding.apply {
                 this@CalendarViewHolder.day = model
-                dayT.text = model.date.dayOfMonth.toString()
 
                 if (model.owner == DayOwner.THIS_MONTH) {
+                    dayT.text = model.date.dayOfMonth.toString()
                     root.setBackgroundResource(if (selectedDate == model.date) R.drawable.background_selected else R.drawable.background_unselected)
                     treatmentI.visibility = if (treatments[model.date] == Unit) View.VISIBLE else View.GONE
                     surveyI.visibility = if (surveys[model.date] == Unit) View.VISIBLE else View.GONE
@@ -64,28 +57,37 @@ class CalendarAdapter : DayBinder<CalendarAdapter.CalendarViewHolder> {
         container.bind(day)
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // API
+    ///////////////////////////////////////////////////////////////////////////
+
     fun submitSelectedDate(selectedDate: LocalDate) {
+        val formerSelectedDate = this.selectedDate
         this.selectedDate = selectedDate
-        listener?.onDataChanged(selectedDate)
-        listener?.onDateClick(selectedDate)
+        listener?.onDateChange(formerSelectedDate)
+        listener?.onDateChange(selectedDate)
     }
 
     fun submitTreatments(treatments: Map<LocalDate, Unit>) {
         this.treatments = treatments
         treatments.keys.forEach { date ->
-            listener?.onDataChanged(date)
+            listener?.onDateChange(date)
         }
     }
 
     fun submitSurveys(surveys: Map<LocalDate, Unit>) {
         this.surveys = surveys
         surveys.keys.forEach { date ->
-            listener?.onDataChanged(date)
+            listener?.onDateChange(date)
         }
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // MISC
+    ///////////////////////////////////////////////////////////////////////////
+
     interface CalendarListener {
-        fun onDataChanged(date: LocalDate)
+        fun onDateChange(date: LocalDate)
         fun onDateClick(date: LocalDate)
     }
 }
