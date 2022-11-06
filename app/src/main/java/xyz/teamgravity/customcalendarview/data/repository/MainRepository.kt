@@ -10,16 +10,16 @@ class MainRepository {
 
     companion object {
         private val surveys = listOf(
-            SurveyModel(name = "RipRoad", time = LocalDate.of(2022, 9, 7)),
-            SurveyModel(name = "Aspiration", time = LocalDate.of(2022, 9, 23)),
-            SurveyModel(name = "DSR", time = LocalDate.of(2022, 9, 29)),
-            SurveyModel(name = "Gitlab", time = LocalDate.of(2022, 10, 21))
+            SurveyModel(name = "RipRoad", time = LocalDate.of(2022, 12, 7)),
+            SurveyModel(name = "Aspiration", time = LocalDate.of(2022, 11, 23)),
+            SurveyModel(name = "DSR", time = LocalDate.of(2022, 11, 29)),
+            SurveyModel(name = "Gitlab", time = LocalDate.of(2022, 11, 21))
         )
 
         private val treatments = listOf(
-            TreatmentModel(name = "Github", LocalDate.of(2022, 9, 10)),
-            TreatmentModel(name = "Bitbucket", LocalDate.of(2022, 9, 13)),
-            TreatmentModel(name = "Mercury", LocalDate.of(2022, 9, 29))
+            TreatmentModel(name = "Github", LocalDate.of(2022, 11, 10)),
+            TreatmentModel(name = "Bitbucket", LocalDate.of(2022, 11, 13)),
+            TreatmentModel(name = "Mercury", LocalDate.of(2022, 11, 29))
         )
     }
 
