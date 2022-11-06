@@ -6,7 +6,7 @@
     android:orientation="horizontal">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/legend_text_1"
+        android:id="@+id/legend_1_t"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -16,7 +16,7 @@
         tools:text="SUN" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/legend_text_2"
+        android:id="@+id/legend_2_t"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -26,7 +26,7 @@
         tools:text="MON" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/legend_text_3"
+        android:id="@+id/legend_3_t"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -36,7 +36,7 @@
         tools:text="TUE" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/legend_text_4"
+        android:id="@+id/legend_4_t"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -46,7 +46,7 @@
         tools:text="WED" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/legend_text_5"
+        android:id="@+id/legend_5_t"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -56,7 +56,7 @@
         tools:text="THU" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/legend_text_6"
+        android:id="@+id/legend_6_t"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -66,7 +66,7 @@
         tools:text="FRI" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/legend_text_7"
+        android:id="@+id/legend_7_t"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
