@@ -128,7 +128,7 @@ class Calendar : Fragment(), CalendarAdapter.CalendarListener {
     private fun onScroll() {
         binding.apply {
             calendar.monthScrollListener = { month ->
-                monthT.text = Helper.formatYearMonth(month)
+                monthT.text = Helper.formatMonthYear(month)
             }
         }
     }
@@ -153,12 +153,12 @@ class Calendar : Fragment(), CalendarAdapter.CalendarListener {
         }
     }
 
-    override fun onDataChanged(date: LocalDate) {
+    override fun onDateChange(date: LocalDate) {
         binding.calendar.notifyDateChanged(date)
     }
 
     override fun onDateClick(date: LocalDate) {
-        viewmodel.onDateChange(date)
+        viewmodel.onSelectedDateChange(date)
     }
 
     override fun onDestroyView() {
