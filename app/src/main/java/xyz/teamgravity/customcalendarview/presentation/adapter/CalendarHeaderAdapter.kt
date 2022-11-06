@@ -19,7 +19,7 @@ class CalendarHeaderAdapter(
 
         fun bind(model: CalendarMonth) {
             binding.apply {
-                if (binding.root.tag == null) {
+                if (root.tag == null) {
                     root.tag = model.yearMonth
                     root.children.map { it as TextView }.forEachIndexed { index, textView ->
                         textView.text = daysOfWeek[index].getDisplayName(TextStyle.SHORT, Locale.getDefault())
