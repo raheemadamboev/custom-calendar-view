@@ -39,6 +39,7 @@ class CalendarViewModel @Inject constructor(
         observeData()
     }
 
+    // FIXME if data gets changed, notify calendar to reflect to removed dates
     private fun observeTreatments() {
         viewModelScope.launch {
             repository.getTreatments().collectLatest { data ->
@@ -47,6 +48,7 @@ class CalendarViewModel @Inject constructor(
         }
     }
 
+    // FIXME if data gets changed, notify calendar to reflect to removed dates
     private fun observeSurveys() {
         viewModelScope.launch {
             repository.getSurveys().collectLatest { data ->
@@ -71,9 +73,9 @@ class CalendarViewModel @Inject constructor(
     // API
     ///////////////////////////////////////////////////////////////////////////
 
-    fun onDateChange(date: LocalDate) {
+    fun onSelectedDateChange(value: LocalDate) {
         viewModelScope.launch {
-            _selectedDate.emit(date)
+            _selectedDate.emit(value)
         }
     }
 }
